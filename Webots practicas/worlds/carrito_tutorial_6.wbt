@@ -1,0 +1,55 @@
+#VRML_SIM R2025a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/appearances/protos/MattePaint.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/samples/tutorials/protos/FourWheelsRobot.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.10016117761188542 0.03717706849379303 0.9942764223683512 2.434536287556752
+  position 0.3086896225374771 -0.2864706057433068 0.09092302917833589
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  translation 0 0 -0.11
+  floorSize 3 3
+}
+Robot {
+  translation 8.30451237024004e-18 -1.900115085326748e-17 -0.06094259443803052
+  rotation 0.8820576175994613 0.35763886583114063 0.3067063756783966 5.930125499975024e-17
+  children [
+    FourWheelsRobot {
+      hidden translation_1 0.05 0.06 0
+      hidden translation_2 0.05 -0.06 0
+      hidden translation_3 -0.05 0.06 0
+      hidden translation_4 -0.05 -0.06 0
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+      }
+      device [
+        RotationalMotor {
+        }
+      ]
+    }
+    DEF BODY Shape {
+      appearance MattePaint {
+      }
+      geometry Box {
+        size 0.1 0.1 0.1
+      }
+    }
+  ]
+  boundingObject USE BODY
+  physics Physics {
+  }
+  controller "TUTURIAL 6"
+  linearVelocity 9.170141987446814e-17 3.8895665947895675e-17 8.125724718866401e-09
+  angularVelocity -5.063249898528031e-16 2.0695419488158257e-15 3.2183359277303007e-16
+}

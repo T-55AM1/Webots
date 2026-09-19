@@ -1,0 +1,99 @@
+#VRML_SIM R2025a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/appearances/protos/OsbWood.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/appearances/protos/Copper.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation 0 0 -1 1.5707963267948966
+  position 0.029643828636565412 2.08475380313085 0.37501360091192226
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  translation 0 0 -0.43
+  floorSize 6 8
+  floorTileSize 0.34 0.34
+}
+Solid {
+  translation 0 0 -0.04
+  rotation 0 0 1 4.692820414042842e-06
+  children [
+    Shape {
+      appearance OsbWood {
+      }
+      geometry DEF Geometria_mesa Box {
+        size 0.5 0.7 0.76
+      }
+    }
+  ]
+  boundingObject USE Geometria_mesa
+}
+DEF Robot Robot {
+  translation 0.24 4.68953e-14 0.35
+  rotation 0 0 1 -1.5707953071795862
+  children [
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 8.66e-09
+        axis 0 1 0
+        anchor 0 0.178 0
+      }
+      device [
+        RotationalMotor {
+          name "Motor"
+          maxPosition 3.14
+        }
+        PositionSensor {
+        }
+      ]
+    }
+    DEF Robot Solid {
+      children [
+        Shape {
+          appearance Copper {
+          }
+          geometry DEF Robot Box {
+            size 0.01 0.0305 0.0211
+          }
+        }
+      ]
+      boundingObject USE Robot
+    }
+  ]
+  controller "controlador_pendulo"
+}
+Group {
+  children [
+    Solid {
+      translation 0 0 -0.09
+      children [
+        Shape {
+          geometry Sphere {
+            radius 0.03
+          }
+        }
+      ]
+      name "solid(2)"
+    }
+    Solid {
+      rotation 0 1 0 3.14000000866
+      children [
+        Shape {
+          geometry DEF Forma_tubo Cylinder {
+            height 0.14
+            radius 0.0025
+          }
+        }
+      ]
+      name "solid(1)"
+      boundingObject USE Forma_tubo
+    }
+  ]
+}

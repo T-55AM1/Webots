@@ -1,0 +1,104 @@
+#VRML_SIM R2025a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/appearances/protos/OsbWood.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/appearances/protos/Copper.proto"
+
+WorldInfo {
+  basicTimeStep 4
+}
+Viewpoint {
+  orientation 0.30236032665008467 -0.1291339591222218 -0.9444059791580496 3.9800761034099312
+  position 0.5828109748008662 -0.45962298244625194 0.676182728459148
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  translation 0 0 -0.43
+  floorSize 6 8
+  floorTileSize 0.34 0.34
+}
+Solid {
+  translation 0 0 -0.04
+  rotation 0 0 1 4.692820414042842e-06
+  children [
+    Shape {
+      appearance OsbWood {
+      }
+      geometry DEF Geometria_mesa Box {
+        size 0.5 0.7 0.76
+      }
+    }
+  ]
+  boundingObject USE Geometria_mesa
+}
+DEF Robot Robot {
+  translation 0.24 4.68953e-14 0.35
+  rotation 0 0 1 -1.5707953071795862
+  children [
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 -1 0
+        dampingConstant 0.001
+      }
+      device [
+        DEF encoder PositionSensor {
+          name "encoder"
+        }
+        DEF motor RotationalMotor {
+          name "motor"
+        }
+      ]
+      endPoint Solid {
+        rotation 0 -1 0 0
+        children [
+          Pose {
+            translation 0 0.0175 0.07
+            rotation 0 1 0 0
+            children [
+              Solid {
+                translation 0 0 0.07
+                children [
+                  Shape {
+                    geometry DEF Forma_pesa Sphere {
+                      radius 0.01
+                    }
+                  }
+                ]
+                boundingObject USE Forma_pesa
+                physics Physics {
+                  density 1240
+                }
+              }
+              Shape {
+                geometry Cylinder {
+                  height 0.14
+                  radius 0.0025
+                }
+              }
+            ]
+          }
+        ]
+        boundingObject Pose {
+          translation 0 0.0178 0.07
+          children [
+            Shape {
+            }
+          ]
+        }
+      }
+    }
+    Shape {
+      appearance Copper {
+      }
+      geometry Box {
+        size 0.01 0.0305 0.0211
+      }
+    }
+  ]
+  controller "controlador_pendulo"
+}
